@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import ItemContainer from './pages/ItemContainer';
+import ItemForm from './components/ItemForm';
 
 
 
@@ -25,10 +26,12 @@ function App() {
     <div className="App">
       <Navbar />
       <Switch>
-        <Route>
+        <Route exact path="/">
           <ItemContainer items={items} setItems={setItems}/>
         </Route>
-        <Route></Route>
+        <Route exact path="/items/new">
+          <ItemForm items={items} setItems={setItems}/>
+        </Route>
         <Route></Route>
       </Switch>
     </div>

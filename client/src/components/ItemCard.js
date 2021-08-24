@@ -3,16 +3,14 @@ import styled from 'styled-components'
 
 const Card = styled.div `
     padding: 1rem;
-    @media (min-width: 1366px) {
+    @media (min-width: 960px) {
         width: 25%;
     }
 `;
 
-
 const Image = styled.img `
 max-width:80%;
 `;
-
 
 function ItemCard({ item }) {
     return (
