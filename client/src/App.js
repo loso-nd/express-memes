@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import ItemContainer from './pages/ItemContainer';
 import ItemForm from './components/ItemForm';
+import OrderCard from './components/OrderCard'
 
 
 
@@ -25,14 +26,16 @@ function App() {
     
     <div className="App">
       <Navbar />
-      <Switch>
+      <Switch> {/** Only allows one route to be displayed at ta time. Exact makes them behave as a rails route */}
         <Route exact path="/">
           <ItemContainer items={items} setItems={setItems}/>
         </Route>
         <Route exact path="/items/new">
           <ItemForm items={items} setItems={setItems}/>
         </Route>
-        <Route></Route>
+        <Route exact path="/orders/:id">
+          <OrderCard items={items} setItems={setItems}/>
+        </Route>
       </Switch>
     </div>
   );

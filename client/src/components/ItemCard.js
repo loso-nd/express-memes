@@ -18,7 +18,7 @@ function ItemCard({ item }) {
             <Image src={item.image_url} />
             <h2>{item.item_name}</h2>
             <h2>{item.price}</h2>
-            <h3>{item.description}</h3>
+            <p>{item.description}</p>
         </Card>
     );
 }
