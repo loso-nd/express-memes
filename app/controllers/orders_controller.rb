@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     
     def create
         order = Order.create(order_params)
-        #byebug
+        byebug
         render json: order, status: :created
     end
     

@@ -45,7 +45,7 @@ function ItemForm({ items, setItems }) { //access to items and setItems as props
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 3,
+                    store_id: 4,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,

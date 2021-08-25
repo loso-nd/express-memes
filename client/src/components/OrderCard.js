@@ -23,7 +23,7 @@ function OrderCard( { items, setItems }) {
         <h2>Your Order has been Created!</h2>
         {order 
         ? (
-            <Card>
+            <Card key={order}>
             <Image src={order.item.image_url} />
             <h2>User: {order.user.username}</h2>
             <h2>Title: {order.item.item_name}</h2>
