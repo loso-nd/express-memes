@@ -56,15 +56,15 @@ export const Textarea = styled.textarea`
   height: 10em;
 `;
 
-export const Card = styled.div`
-  padding: 1em;
-  @media (min-width: 1375px) {
-    width: 31%;
-  }
+export const Card = styled.div `
+    padding: 1rem;
+    @media (min-width: 960px) {
+        width: 25%;
+    }
 `;
 
-export const Image = styled.img`
-  max-width: 100%;
+export const Image = styled.img `
+max-width:80%;
 `;
 
 export const Grid = styled.div`
