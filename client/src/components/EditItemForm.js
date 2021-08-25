@@ -2,30 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Input, Form, Textarea } from './styled';
 import { useHistory, useParams } from 'react-router-dom';
 
-    // //good example of flexbox
-    // const Form = styled.form `
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //     height: 100vh;
-    // `;
-
-    // const Input = styled.input `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375em;
-    // `;
-
-    // const Textarea = styled.textarea `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375;
-    //     height: 15rem;    
-    // `;
-
 
 function EditItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
@@ -76,6 +52,10 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
                return i.id === parseInt(id) ? newItem : i
             })); //or item.concat(newItem) add to the end of the items
             history.push('/')
+        } else {
+            const error = await response.json();
+            console.log(error)
+           setError(error.message)
         }
     }
 

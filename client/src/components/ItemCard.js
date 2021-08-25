@@ -1,23 +1,23 @@
-import React from 'react'
-import { Card, Image } from './styled'
+import React, { useState } from 'react'
+import { Card, Image, Button, Errors } from './styled'
 import { Link, useHistory } from 'react-router-dom'
 
-// const Card = styled.div `
-//     padding: 1rem;
-//     @media (min-width: 960px) {
-//         width: 25%;
-//     }
-// `;
+function ItemCard({ item, items, setItems }) {
+    let history = useHistory();
+    const [errors, setErrors] = useState(null)
 
-// const Image = styled.img `
-// max-width:80%;
-// `;
+    //Delete item
+    async function deleteItem() {
+        const res = await fetch(`/items/${item.id}`, {
+          method: 'DELETE'
+        })
+        if (res.ok) {
+          setItems(items.filter((i) => i.id !== item.id));
+        }
+      }
 
-function ItemCard({ item }) {
-
-    const history = useHistory();
-
-    async function handleClick(e) {
+    //fetch POST
+    async function orderItem(e) {
         const res = await fetch('/orders', { 
             method: 'POST', 
             headers: { 
@@ -30,8 +30,13 @@ function ItemCard({ item }) {
                 }
             })
         })
-        const order = await res.json();
-        history.push(`/orders/${order.id}`); //interpolate json.id bc json is the varibale name used to parse the json response.
+        if (res.ok){
+            const order = await res.json();
+            history.push(`/orders/${order.id}`); //interpolate json.id bc json is the varibale name used to parse the json response.
+        } else {
+            const error = await res.json();
+            setErrors(error.message)
+        }
        // debugger
     }
 
@@ -41,11 +46,18 @@ function ItemCard({ item }) {
             <h2>{item.item_name}</h2>
             <h2>{item.price}</h2>
             <p>{item.description}</p>
-            <p>
-                <Link to={`/items/${item.id}/edit`}>
-                    <button type="button">Edit</button>
-                </Link> 
-                    <button onClick={handleClick} type="button">Buy</button></p>
+            <Button red onClick={deleteItem}>
+                Delete
+            </Button>
+            <Button green onClick={orderItem}>
+                Order
+            </Button>
+            <Link to={`/items/${item.id}/edit`}>
+                <Button grey>Edit</Button>
+            </Link>
+            <Errors>
+                <p>{errors}</p>
+            </Errors>
         </Card>
     );
 }

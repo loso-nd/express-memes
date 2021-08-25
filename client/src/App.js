@@ -38,7 +38,7 @@ function App() {
           <ItemContainer items={items} setItems={setItems}/>
         </Route>
         <Route exact path="/orders/:id">
-          <OrderCard items={items} setItems={setItems}/>
+          <OrderCard />
         </Route>
       </Switch>
     </div>

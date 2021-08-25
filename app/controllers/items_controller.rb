@@ -30,8 +30,9 @@ class ItemsController < ApplicationController
 
     def destroy
         item = Item.find(params[:id])
-        Item.delete
-        render json: {message: 'item removed'}
+        #item.orders.destroy_all
+        item.destroy
+        render json: item
     end 
 
     private

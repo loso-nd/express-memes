@@ -18,7 +18,7 @@ function ItemContainer({ items , setItems }) {
                     key={item.id}
                     item={item}
                     items={items}
-                    setitem={setItems}
+                    setItems={setItems}
                 />
                 ))}
             </Grid>
