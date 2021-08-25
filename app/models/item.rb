@@ -3,5 +3,5 @@ class Item < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :users, through: :orders
 
-  validates :item_name, :description, presence: true;
+  validates :item_name, :description, :price,:image_url, presence: true;
 end

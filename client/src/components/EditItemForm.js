@@ -37,7 +37,7 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 4,
+                    store_id: 5,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,

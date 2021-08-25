@@ -22,7 +22,7 @@ s1 = Store.create(store_name: 'Wayne Tower', owner: 'Bruce Wayne', mission: 'Dar
 
 #itmes 
 puts 'Creating Items...'
-10.times do |i|
+12.times do |i|
     Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png', store_id: Store.all.sample.id)
 end 
 

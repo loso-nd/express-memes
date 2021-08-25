@@ -7,8 +7,10 @@ class OrdersController < ApplicationController
     
     def create
         order = Order.create(order_params)
-        #byebug
-        render json: order, status: :created
+        if order.valid?
+            render json: order
+        else
+        render json: {message: order.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
     
     private
