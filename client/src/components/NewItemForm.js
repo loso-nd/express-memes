@@ -1,33 +1,33 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import { Input, Form, Textarea } from "./styled"
 
-    //good example of flexbox
-    const Form = styled.form `
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        height: 100vh;
-    `;
+    // //good example of flexbox
+    // const Form = styled.form `
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     flex-direction: column;
+    //     height: 100vh;
+    // `;
 
-    const Input = styled.input `
-        padding: 1em;
-        margin: 1em 0;
-        width: 18em;
-        border-radius: 0.375em;
-    `;
+    // const Input = styled.input `
+    //     padding: 1em;
+    //     margin: 1em 0;
+    //     width: 18em;
+    //     border-radius: 0.375em;
+    // `;
 
-    const Textarea = styled.textarea `
-        padding: 1em;
-        margin: 1em 0;
-        width: 18em;
-        border-radius: 0.375;
-        height: 15rem;    
-    `;
+    // const Textarea = styled.textarea `
+    //     padding: 1em;
+    //     margin: 1em 0;
+    //     width: 18em;
+    //     border-radius: 0.375;
+    //     height: 15rem;    
+    // `;
 
 
-function ItemForm({ items, setItems }) { //access to items and setItems as props
+function NewItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
@@ -98,13 +98,13 @@ function ItemForm({ items, setItems }) { //access to items and setItems as props
                 >
                 </Textarea>
                 <br />
-                <input type="submit" value="Post" />
+                <Input submit type="submit" value="Post" />
             </Form>
             <div>{error ? error.map((error) => <p>{error}</p>) : null}</div>
         </div>
     )
 }
-export default ItemForm
+export default NewItemForm;
 
 
 /**

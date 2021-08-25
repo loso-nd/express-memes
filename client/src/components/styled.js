@@ -39,11 +39,11 @@ export const Input = styled.input`
     props.submit &&
     css`
       cursor: pointer;
-      background: lightskyblue;
+      background: #4a5970;
       color: white;
       transition: background 0.3s 0s ease-in-out;
       :hover {
-        background: #62c0fa;
+        background:  #ccbba3;
       }
     `}
 `;

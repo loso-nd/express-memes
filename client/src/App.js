@@ -3,7 +3,8 @@ import React, {useState, useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import ItemContainer from './pages/ItemContainer';
-import ItemForm from './components/ItemForm';
+import NewItemForm from './components/NewItemForm';
+import EditItemForm from './components/EditItemForm';
 import OrderCard from './components/OrderCard'
 
 
@@ -27,11 +28,14 @@ function App() {
     <div className="App">
       <Navbar />
       <Switch> {/** Only allows one route to be displayed at ta time. Exact makes them behave as a rails route */}
+      <Route exact path="/items/new">
+          <NewItemForm items={items} setItems={setItems}/>
+        </Route>
+        <Route exact path="/items/:id/edit">
+          <EditItemForm items={items} setItems={setItems}/>
+        </Route>
         <Route exact path="/">
           <ItemContainer items={items} setItems={setItems}/>
-        </Route>
-        <Route exact path="/items/new">
-          <ItemForm items={items} setItems={setItems}/>
         </Route>
         <Route exact path="/orders/:id">
           <OrderCard items={items} setItems={setItems}/>

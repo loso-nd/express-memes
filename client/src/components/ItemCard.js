@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image } from './styled'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 // const Card = styled.div `
 //     padding: 1rem;
@@ -30,8 +30,8 @@ function ItemCard({ item }) {
                 }
             })
         })
-        const json = await res.json();
-        history.push(`/orders/${json.id}`); //interpolate json.id bc json is the varibale name used to parse the json response.
+        const order = await res.json();
+        history.push(`/orders/${order.id}`); //interpolate json.id bc json is the varibale name used to parse the json response.
        // debugger
     }
 
@@ -41,9 +41,11 @@ function ItemCard({ item }) {
             <h2>{item.item_name}</h2>
             <h2>{item.price}</h2>
             <p>{item.description}</p>
-            <p><button 
-                onClick={handleClick}
-                type="button">Buy</button></p>
+            <p>
+                <Link to={`/items/${item.id}/edit`}>
+                    <button type="button">Edit</button>
+                </Link> 
+                    <button onClick={handleClick} type="button">Buy</button></p>
         </Card>
     );
 }
