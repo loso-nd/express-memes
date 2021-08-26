@@ -55,6 +55,10 @@ function Auth({ setCurrentUser }) {
                 <Input submit type="submit" value="Log in"/>
                 {errors ? errors.map((error) => <div>{error}</div>): null} 
             </Form>
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 228fa657b937d9978b3f579651a693202228b3b0
         </>
     )
 }

@@ -11,7 +11,11 @@ import Login from './components/Login';
 
 
 function App() {
+<<<<<<< HEAD
   const [items, setItems] = useState([]); // store items here in
+=======
+  const [items, setItems] = useState([]); // store items herein
+>>>>>>> 228fa657b937d9978b3f579651a693202228b3b0
   const [currentUser, setCurrentUser] = useState([])
 
   //render items to the dom on page load via useEffect
