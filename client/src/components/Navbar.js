@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import { NavBar } from './styled'
 import { NavLink } from "react-router-dom";
 
-function Navbar({ currentUser }) {
-    console.log(currentUser)
+function Navbar({ user })  {
+    console.log(user.id)
     return (
         <NavBar>
-            <h1 style={{color: '#fff', marginRight:30}}>{currentUser.username}</h1>
+            <h1 style={{color: '#fff', marginRight:30}}>{user.id}</h1>
                 {/* {currentUser.username},</h1>
          {currentUser.username ? <h1 style={{color: '#fff', marginRight:30}}>
                 
