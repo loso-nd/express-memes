@@ -61,5 +61,4 @@ function ItemCard({ item, items, setItems }) {
         </Card>
     );
 }
-
 export default ItemCard

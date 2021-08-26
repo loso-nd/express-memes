@@ -1,51 +1,27 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import { Input, Form, Textarea } from "./styled"
-
-    // //good example of flexbox
-    // const Form = styled.form `
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //     height: 100vh;
-    // `;
-
-    // const Input = styled.input `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375em;
-    // `;
-
-    // const Textarea = styled.textarea `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375;
-    //     height: 15rem;    
-    // `;
-
+import { Input, Form, Textarea, Errors } from "./styled";
 
 function NewItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
-    const [error, setError] = useState('')
+    const [errors, setErrors] = useState([])
+
 
     const history = useHistory();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch('/items', {
+        const res = await fetch('/items', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 5,
+                    store_id: 13,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,
@@ -54,14 +30,14 @@ function NewItemForm({ items, setItems }) { //access to items and setItems as pr
             })
         })
         //Check the response by testing the form and adding byebug to the create action controller
-        if (response.ok){
-            const newItem = await response.json();
+        if (res.ok){
+            const newItem = await res.json();
             setItems([...items, newItem]) //or item.concat(newItem) add to the end of the items
             history.push('/')
         } else {
-            const error = await response.json();
+            const error = await res.json();
             console.log(error)
-           setError(error.message)
+            setErrors(error.message)
         }
     }
 
@@ -99,8 +75,10 @@ function NewItemForm({ items, setItems }) { //access to items and setItems as pr
                 </Textarea>
                 <br />
                 <Input submit type="submit" value="Post" />
+                <Errors>{errors}</Errors>
             </Form>
-            <div>{error ? error.map((error) => <p>{error}</p>) : null}</div>
+            {/* <div>{errors ? errors.map((error) => <p>{error}</p>) : null}</div> */}
+            
         </div>
     )
 }

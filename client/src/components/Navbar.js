@@ -1,34 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavBar } from './styled'
 import { NavLink } from "react-router-dom";
 
-// const NavBar = styled.nav`
-// background: #4a5970;
-// height: 3.2rem;
-// display: flex;
-// align-items: center; 
-// justify-content: center; 
-
-
-// a {
-//     text-decoration: none;
-//     padding: 1em;
-//     color: #fff;
-//     transition: background 0.3s 0s ease-in-out;
-//     &:hover {
-//       background: #ccbba3;
-//     }
-//   }
-//   a.active {
-//     background: #ccbba3;
-//   }
-// `;
-
-
-
-function Navbar() {
+function Navbar({ currentUser }) {
+    console.log(currentUser)
     return (
         <NavBar>
+            <h1 style={{color: '#fff', marginRight:30}}>{currentUser.username}</h1>
+                {/* {currentUser.username},</h1>
+         {currentUser.username ? <h1 style={{color: '#fff', marginRight:30}}>
+                
+                {currentUser.username},</h1> :null } */}
             <NavLink 
                 exact
                 activeClassName="active"
@@ -39,10 +21,21 @@ function Navbar() {
                 exact
                 activeClassName="active"
                 to="/items/new"
-            >New Item
+            >Generate Emotions
+            </NavLink>
+            <NavLink 
+                exact
+                activeClassName="active"
+                to="/sign_up"
+            >Sign up
+            </NavLink>
+            <NavLink 
+                exact
+                activeClassName="active"
+                to="/log_in"
+            >Login
             </NavLink>
         </NavBar>
     );
 }
-
 export default Navbar;

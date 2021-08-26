@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { Input, Form, Textarea } from './styled';
+import { Input, Form, Textarea, Errors } from './styled';
 import { useHistory, useParams } from 'react-router-dom';
 
-
 function EditItemForm({ items, setItems }) { //access to items and setItems as props
+    //State for controlled form
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
@@ -17,8 +17,8 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
     useEffect(() => {
         async function fetchItem() {
             const res = await fetch(`/items/${id}`)
-            const item = await res.json() //when we call this method we are not getting a json back, we are getting an obj, a data structure that formmatted into json before we call json
-            //what do we do with the item after its parsed? We want to update the 
+            const item = await res.json() //callin this method doesnt give us a json back, we are getting an obj, a data structure formmatted into json b4 we call json
+            //what do we do with the item after it is parsed? We want to update the state from the original existing content
             setItemName(item.item_name)
             setImageUrl(item.image_url)
             setPrice(item.price)
@@ -46,14 +46,14 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
             })
         })
         //Check the response by testing the form and adding byebug to the create action controller
+        const item = await response.json();
         if (response.ok){
-            const newItem = await response.json();
             setItems(items.map(i => {
-               return i.id === parseInt(id) ? newItem : i
+               return i.id === parseInt(id) ? item : i
             })); //or item.concat(newItem) add to the end of the items
+            items.unshift(item)
             history.push('/')
         } else {
-            const error = await response.json();
             console.log(error)
            setError(error.message)
         }
@@ -93,16 +93,10 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
                 </Textarea>
                 <br />
                 <Input submit type="submit" value="Post" />
+                <Errors>{error}</Errors>
             </Form>
-            <div>{error ? error.map((error) => <p>{error}</p>) : null}</div>
+            {/* <div>{error ? error.map((error) => <p>{error}</p>) : null}</div> */}
         </div>
     )
 }
 export default EditItemForm
-
-
-/**
- * !FORMS
- *  ?How to make <Form /> a controlled form:
- * * UseState to keep track of input values
- */

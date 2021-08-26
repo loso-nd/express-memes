@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
         if item.valid?
             render json: item
         else 
-            render json: {status: "error", message: item.errors.full_messages.to_sentences}, status: :unprocessable_entity
+            render json: {status: "error", message: item.errors.full_messages.to_sentence}, status: :unprocessable_entity
         end 
     end
 
