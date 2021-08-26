@@ -5,13 +5,14 @@ import Navbar from './components/Navbar.js';
 import ItemContainer from './pages/ItemContainer';
 import NewItemForm from './components/NewItemForm';
 import EditItemForm from './components/EditItemForm';
-import OrderCard from './components/OrderCard'
-
-
+import OrderCard from './components/OrderCard';
+import Auth from './components/Auth';
+import Login from './components/Login';
 
 
 function App() {
   const [items, setItems] = useState([]); // store items herein
+  const [currentUser, setCurrentUser] = useState([])
 
   //render items to the dom on page load via useEffect
   useEffect(() => {
@@ -26,7 +27,7 @@ function App() {
   return (
     
     <div className="App">
-      <Navbar />
+      <Navbar currentUser={currentUser} />
       <Switch> {/** Only allows one route to be displayed at ta time. Exact makes them behave as a rails route */}
       <Route exact path="/items/new">
           <NewItemForm items={items} setItems={setItems}/>
@@ -39,6 +40,12 @@ function App() {
         </Route>
         <Route exact path="/orders/:id">
           <OrderCard />
+        </Route>
+        <Route exact path="/sign_up">
+          <Auth setCurrentUser={setCurrentUser}/> //we want to setCurrent in our Auth
+        </Route>
+        <Route exact path="/log_in">
+          <Login setCurrentUser={setCurrentUser}/> //we want to setCurrent in our Auth
         </Route>
       </Switch>
     </div>
