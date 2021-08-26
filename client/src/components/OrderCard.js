@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { Card, Image } from './styled'
 
-function OrderCard( { items, setItems }) {
+function OrderCard() {
     //State to keep track of Orders
     const [order, setOrder] = useState(null)
     const id = useParams().id
@@ -15,7 +15,7 @@ function OrderCard( { items, setItems }) {
             //debugger
             setOrder(json) //update state
         }
-        fetchOrder() // invoke the funciton
+        fetchOrder()
     }, [])
     return (
         <>
@@ -23,7 +23,7 @@ function OrderCard( { items, setItems }) {
         <h2>Your Order has been Created!</h2>
         {order 
         ? (
-            <Card key={order}>
+            <Card key={order.id}>
             <Image src={order.item.image_url} />
             <h2>User: {order.user.username}</h2>
             <h2>Title: {order.item.item_name}</h2>

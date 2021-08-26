@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
             render json: order
         else
         render json: {message: order.errors.full_messages.to_sentence}, status: :unprocessable_entity
+        end
     end
     
     private
