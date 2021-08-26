@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-<<<<<<< HEAD
 import { Input, Form, Textarea, Errors } from "./styled";
-=======
-import { Input, Form, Textarea } from "./styled"
->>>>>>> 228fa657b937d9978b3f579651a693202228b3b0
 
 function NewItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
@@ -25,7 +21,7 @@ function NewItemForm({ items, setItems }) { //access to items and setItems as pr
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 13,
+                    store_id: 20,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,

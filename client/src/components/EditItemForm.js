@@ -17,13 +17,8 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
     useEffect(() => {
         async function fetchItem() {
             const res = await fetch(`/items/${id}`)
-<<<<<<< HEAD
             const item = await res.json() //callin this method doesnt give us a json back, we are getting an obj, a data structure formmatted into json b4 we call json
             //what do we do with the item after it is parsed? We want to update the state from the original existing content
-=======
-            const item = await res.json() //when we call this method we are not getting a json back, we are getting an obj, a data structure that formmatted into json before we call json
-            //what do we do with the item after its parsed? We want to update the state from the original existing content
->>>>>>> 228fa657b937d9978b3f579651a693202228b3b0
             setItemName(item.item_name)
             setImageUrl(item.image_url)
             setPrice(item.price)
@@ -42,7 +37,7 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 5,
+                    store_id: 20,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,
