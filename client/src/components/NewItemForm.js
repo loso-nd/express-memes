@@ -2,31 +2,6 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { Input, Form, Textarea } from "./styled"
 
-    // //good example of flexbox
-    // const Form = styled.form `
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //     height: 100vh;
-    // `;
-
-    // const Input = styled.input `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375em;
-    // `;
-
-    // const Textarea = styled.textarea `
-    //     padding: 1em;
-    //     margin: 1em 0;
-    //     width: 18em;
-    //     border-radius: 0.375;
-    //     height: 15rem;    
-    // `;
-
-
 function NewItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')

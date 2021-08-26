@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Input, Form, Textarea } from './styled';
 import { useHistory, useParams } from 'react-router-dom';
 
-
 function EditItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
@@ -18,7 +17,7 @@ function EditItemForm({ items, setItems }) { //access to items and setItems as p
         async function fetchItem() {
             const res = await fetch(`/items/${id}`)
             const item = await res.json() //when we call this method we are not getting a json back, we are getting an obj, a data structure that formmatted into json before we call json
-            //what do we do with the item after its parsed? We want to update the 
+            //what do we do with the item after its parsed? We want to update the state from the original existing content
             setItemName(item.item_name)
             setImageUrl(item.image_url)
             setPrice(item.price)
