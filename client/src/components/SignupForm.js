@@ -6,38 +6,36 @@ function SignupForm({ onLogin }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-   // const [bio, setBio] = useState("");
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [bio, setBio] = useState("");
+    const [errors, setErrors] = useState([])
+
 
    // const history = useHistory();
 
     //handleSubmit function that will handle our fetch
     function handleSubmit(e) {
         e.preventDefault()
-        setIsLoading(true);
             async function signup(){
             const user = {
                 username,
                 password,
-                email
+                email,
+                bio
             }
-            const res = await fetch(`/log_in`, {
+            const res = await fetch(`/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({user})
             });
-            setIsLoading(false);
-            if(res.ok){
-                const user = await res.json();
-                console.log(user)
-                onLogin(user);
-                //history.push('/')
-            } else {
-                const err = await res.json();
-                setErrors(err.errors)
+            const userData = await res.json();
+            console.log(userData)
+            if(!userData.message) {
+                console.log(userData)
+                onLogin(userData);
+            } else {     
+                setErrors(userData.message)
             }
         }
         signup();
@@ -77,8 +75,17 @@ function SignupForm({ onLogin }) {
                 />              
                 </FormField>
                 <FormField>
+                    <Label htmlFor="bio">Bio</Label>
+                    <Textarea
+                    rows="3"
+                    id="bio"
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                    />
+                </FormField>
+                <FormField>
                     <Button variant="outline" color="primary"  type="submit">
-                        {isLoading ? "Loading..." : "Login"}
+                        Sign Up
                     </Button>
                 </FormField>
                 <FormField>

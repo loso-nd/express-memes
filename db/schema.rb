@@ -16,14 +16,13 @@ ActiveRecord::Schema.define(version: 2021_08_23_174118) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.bigint "store_id", null: false
     t.string "item_name"
     t.string "description"
     t.string "image_url"
-    t.float "price"
+    t.string "price"
+    t.string "product"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["store_id"], name: "index_items_on_store_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -35,23 +34,16 @@ ActiveRecord::Schema.define(version: 2021_08_23_174118) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "stores", force: :cascade do |t|
-    t.string "store_name"
-    t.string "mission"
-    t.string "owner"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "email"
     t.string "password_digest"
+    t.string "email"
+    t.string "admin"
+    t.string "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "items", "stores"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
 end

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const NavBar = styled.nav`
 background: #4a5970;
-height: 3.2rem;
+height: 4.5rem;
 display: flex;
 align-items: center; 
 justify-content: center; 
@@ -129,7 +129,7 @@ export const Wrapper = styled.header`
 export const Logo = styled.h1`
   font-family: "Courier New";
   font-size: 3rem;
-  color: #21EE66;
+  color: #ccbba3;
   margin: 0;
   line-height: 1;
   a {

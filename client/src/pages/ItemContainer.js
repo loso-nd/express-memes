@@ -7,8 +7,8 @@ function ItemContainer({ user }) {
 
     useEffect(() => {
         async function fetchData() {
-            const result = await fetch('/items');
-            const items = await result.json();
+            const res = await fetch('/items');
+            const items = await res.json();
             setItems(items); //update state 
             }
             fetchData() // invoke the function

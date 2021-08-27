@@ -1,19 +1,14 @@
 import React, { useState } from 'react'
 import { Input, Button, Error, FormField, Label} from "../styles.js";
-//import { useHistory } from 'react-router-dom'
 
 function LoginForm({ onLogin }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-   // const history = useHistory();
 
     //handleSubmit function that will handle our fetch
     function handleSubmit(e) {
         e.preventDefault()
-        setIsLoading(true);
 
         async function login() {
         const user = {
@@ -28,50 +23,50 @@ function LoginForm({ onLogin }) {
             body: JSON.stringify({user})
         });
         const userData = await res.json();
-        if(userData.id){
-            setIsLoading(false);
+        console.log(userData)
+        if(!userData.message) {
             console.log(userData)
-            onLogin(userData.id);
-            //history.push('/')
-        } else {
+            onLogin(userData);
+        } else {     
             setErrors(userData.message)
         }
-    };
-    login();
-    };
+    }
+        login()
+      };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <FormField>
-                <Label htmlFor="username">Username</Label>
-                <Input
-                    type="text"
-                    placeholder="username"
-                    name="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                    <Label htmlFor="username">Username</Label>
+                    <Input
+                        type="text"
+                        placeholder="username"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                 </FormField>
                 <FormField>
-                <Label htmlFor="password">Password</Label>    
-                <Input
-                    type="text"
-                    placeholder="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />              
+                    <Label htmlFor="password">Password</Label>    
+                    <Input
+                        type="text"
+                        placeholder="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />              
                 </FormField>
                 <FormField>
                     <Button variant="outline" color="primary"  type="submit">
-                        {isLoading ? "Loading..." : "Login"}
+                        Login
                     </Button>
                 </FormField>
                 <FormField>
-                    {errors.map((error) => (
-                        <Error key={error}>{error}</Error>
-                    ))} 
+                {/* {errors?errors.map(error => <div>{error}</div>):null} */}
+                {errors.map((err) => (
+          <Error key={err}>{err}</Error>
+        ))}
                 </FormField>
             </form>
         </>

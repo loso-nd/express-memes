@@ -6,51 +6,37 @@ import ItemContainer from './pages/ItemContainer';
 import NewItemForm from './components/NewItemForm';
 import EditItemForm from './components/EditItemForm';
 import OrderCard from './components/OrderCard';
-import Auth from './components/Auth';
-import Login from './components/Login';
-import NewLogin from './components/NewLogin';
+import NewLogin from './components/NewLogin'; 
 
 
 function App() {
   const [items, setItems] = useState([]); // store items here in
-  const [currentUser, setCurrentUser] = useState([])
   const [user, setUser] = useState(null)
   if(!user) return <NewLogin onLogin={setUser} />
-  // //render items to the dom on page load via useEffect
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const result = await fetch('/items');
-  //     const items = await result.json();
-  //     setItems(items); //update state 
-  //   }
-  //   fetchData() // invoke the function
-  // }, [])
-  // console.log(items)
+
   return (
     
     <div className="App">
-      <Navbar //currentUser={currentUser}
-        user={user} setUser={setUser}/>
+      <Navbar user={user} setUser={setUser}/>
       <Switch> {/** Only allows one route to be displayed at ta time. Exact makes them behave as a rails route */}
       <Route exact path="/items/new">
           <NewItemForm items={items} setItems={setItems}/>
         </Route>
         <Route exact path="/items/:id/edit">
-          <EditItemForm items={items} setItems={setItems}/>
+          <EditItemForm items={items} setItems={setItems} user={user}/>
         </Route>
         <Route exact path="/">
-          <ItemContainer //items={items} setItems={setItems}
-            user={user}/>
+          <ItemContainer user={user}/>
         </Route>
         <Route exact path="/orders/:id">
           <OrderCard />
         </Route>
-        <Route exact path="/sign_up">
+        {/* <Route exact path="/sign_up">
           <Auth setCurrentUser={setCurrentUser}/> //we want to setCurrent in our Auth
         </Route>
         <Route exact path="/log_in">
           <Login setCurrentUser={setCurrentUser}/> //we want to setCurrent in our Auth
-        </Route>
+        </Route> */}
       </Switch>
     </div>
   );

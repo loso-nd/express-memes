@@ -1,87 +1,133 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import { Input, Form, Textarea, Errors } from "./styled";
+import { Input, Form, Textarea, Button } from "./styled";
+import {Error, FormField, Label} from "../styles.js";
+import styled from 'styled-components';
+
 
 function NewItemForm({ items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
+    const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-        const res = await fetch('/items', {
+        setIsLoading(true);
+        async function createItem(){
+           const res = await fetch("/items", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                item: { //key of item with objects 
-                    store_id: 20,
+                item: {
                     item_name: itemName,
                     description,
                     image_url: imageUrl,
-                    price
+                    price,
+                    product
                 }
             })
-        })
-        //Check the response by testing the form and adding byebug to the create action controller
-        if (res.ok){
-            const newItem = await res.json();
-            setItems([...items, newItem]) //or item.concat(newItem) add to the end of the items
-            history.push('/')
-        } else {
-            const error = await res.json();
-            console.log(error)
-            setErrors(error.message)
-        }
+            })
+             //Check the response by testing the form and adding byebug to the create action controller
+            if(res.ok){
+                const newItem = await res.json();
+                setItems([...items, newItem]) //or item.concat(newItem) add to the end of the items
+                history.push('/')
+            } else {
+                const error = await res.json();
+                console.log(error)
+                setErrors(error.message)
+            };
+       }
+       createItem();
     }
 
     return (
-        <div>
-            <Form onSubmit={handleSubmit}>
-                <h1>Express YoSelf</h1>
-                <Input
-                    type="text"
-                    placeholder="Item Name"
-                    name="itemName"
-                    value={itemName}
-                    onChange={(e) => setItemName(e.target.value)}
-                />
-                <Input
-                    type="text"
-                    placeholder="Image Url"
-                    name="image"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                />
-                <Input
-                    type="text"
-                    placeholder="Price"
-                    name="price"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                />
-                <Textarea
-                    placeholder="Description"
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                >
-                </Textarea>
-                <br />
-                <Input submit type="submit" value="Post" />
-                <Errors>{errors}</Errors>
-            </Form>
-            {/* <div>{errors ? errors.map((error) => <p>{error}</p>) : null}</div> */}
-            
-        </div>
-    )
-}
+        <Wrapper>
+        <WrapperChild>
+          <h2>New Expressions</h2>
+          <form onSubmit={handleSubmit}>
+            <FormField>
+              <Label htmlFor="itemName">Title</Label>
+              <Input
+                type="text"
+                id="itemName"
+                value={itemName}
+                onChange={(e) => setItemName(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Label htmlFor="imageUrl">Image</Label>
+              <Input
+                type="text"
+                id="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Label htmlFor="price">Price</Label>
+              <Input
+                type="number"
+                id="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Label htmlFor="product">Product</Label>
+                <form className="products">
+                  <select onChange={(e) => setProduct(e.target.value)}>
+                    <option value="button">Button</option>
+                    <option value="Pin">Pin</option>
+                    <option selected value="shirt">Shirt</option>
+                  </select>
+                </form>
+            </FormField>
+            <FormField>
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                rows="10"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Button color="primary" type="submit">
+                {isLoading ? "Loading..." : "Submit"}
+              </Button>
+            </FormField>
+            <FormField>
+              {errors.map((err) => (
+                <Error key={err}>{err}</Error>
+              ))}
+            </FormField>
+          </form>
+        </WrapperChild>
+      </Wrapper>
+    );
+  }
+  
+  const Wrapper = styled.section`
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 16px;
+    display: flex;
+    gap: 24px;
+  `;
+  
+  const WrapperChild = styled.div`
+    flex: 1;
+  `;
+  
 export default NewItemForm;
 
 

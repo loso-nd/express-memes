@@ -56,6 +56,6 @@ function Auth({ setCurrentUser }) {
                 {errors ? errors.map((error) => <div>{error}</div>): null} 
             </Form>
         </>
-    )
+    ) 
 }
 export default Auth;

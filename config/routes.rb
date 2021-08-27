@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :create]
   resources :items, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:create]
-  resources :stores
   resources :log_in, only: [:create]
 end

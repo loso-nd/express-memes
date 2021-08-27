@@ -10,29 +10,26 @@
 Order.destroy_all
 User.destroy_all
 Item.destroy_all
-Store.destroy_all
+
 
 #User
 puts 'Creating Users...'
-zatana = User.create(username: 'zatana', password_digest: '1234', email: 'zatana@justice.com')
-nightwing = User.create(username: 'nightwing', password_digest: '1234', email: 'nightwing@justice.com')
+zatana = User.create!(username: 'zatana', password: '1234', email: 'zatana@justice.com', bio: "Understands Emotional IQ", admin: false)
+nightwing = User.create!(username: 'nightwing', password: '1234', email: 'nightwing@justice.com', bio: "Facial Expressions tell all.", admin: true)
 
-#Store
-puts 'Creating Stores...'
-s1 = Store.create(store_name: 'Wayne Tower', owner: 'Bruce Wayne', mission: 'Dark Knight')
 
 #itmes 
 puts 'Creating Items...'
 25.times do |i|
-    Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png', store_id: Store.all.sample.id)
+    Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png', product:"Pin")
 end 
 
-byebug
 
 #orders
 puts 'Creating Orders...'
-25.times do |i|
-    Order.create(user_id:User.all.sample.id, item_id: Item.all.sample.id, review:"Much Appreciated")
+15.times do |i|
+    #   inflectOrder.create(user_id:User.all, item_id: Item.all )
+    Order.create(user_id:User.all.sample.id, item_id: Item.all.sample.id)
 end 
 
 puts 'Done Seeding...'

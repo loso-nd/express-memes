@@ -25,7 +25,7 @@ function ItemCard({ item, items, setItems }) {
             },
             body: JSON.stringify({ //should match our OrderController#create action
                 order: {
-                    user_id: 22,
+                    user_id: 31,
                     item_id: item.id // since we are passing in item as props, if the item has an (id) we can pull (id) out of that item 
                 }
             })
@@ -44,7 +44,7 @@ function ItemCard({ item, items, setItems }) {
         <Card>
             <Image src={item.image_url} />
             <h2>{item.item_name}</h2>
-            <h2>{item.price}</h2>
+            <h2>{item.product}: ${item.price}0</h2>
             <p>{item.description}</p>
             <Button red onClick={deleteItem}>
                 Delete

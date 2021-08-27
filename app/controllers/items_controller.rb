@@ -22,8 +22,8 @@ class ItemsController < ApplicationController
     end
 
     def update
-        # item = Item.find(params[:id])
-        # Item.update(item_params)
+        #byebug
+        #item = Item.find(params[:id])
         @item.update(item_params)
         render json: @item
     end 
@@ -32,13 +32,13 @@ class ItemsController < ApplicationController
         item = Item.find(params[:id])
         #item.orders.destroy_all
         item.destroy
-        render json: item
+        render json: @item
     end 
 
     private
 
     def item_params
-        params.require(:item).permit(:store_id, :item_name, :description, :image_url, :price)
+        params.require(:item).permit(:item_name, :description, :image_url, :price, :product)
     end
 
     def set_item
