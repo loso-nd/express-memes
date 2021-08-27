@@ -25,7 +25,7 @@ function ItemCard({ item, items, setItems }) {
             },
             body: JSON.stringify({ //should match our OrderController#create action
                 order: {
-                    user_id: 9,
+                    user_id: 22,
                     item_id: item.id // since we are passing in item as props, if the item has an (id) we can pull (id) out of that item 
                 }
             })

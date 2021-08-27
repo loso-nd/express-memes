@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_many :items, through: :orders
 
     validates :username, :password, presence: {message: "Must be present"}
-    validates :username, uniqueness: true
+    validates :username, :email, uniqueness: true 
     has_secure_password
 
     #how bcrypt is implemented

@@ -62,18 +62,8 @@ function Auth({ setCurrentUser }) {
                 </Input>
                 <Input submit type="submit" value="Sign up"/>
                 {errors ? errors.map((error) => <div>{error}</div>): null} 
-<<<<<<< HEAD
             </Form>    
         </>
     )
 }
 export default Auth;
-=======
-            </Form>
-            
-        </>
-    )
-}
-
-export default Auth;
->>>>>>> 228fa657b937d9978b3f579651a693202228b3b0

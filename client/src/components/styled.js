@@ -117,3 +117,43 @@ export const Errors = styled.div`
   content: '.';
   color: red;
 `
+
+export const Wrapper = styled.header`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+`;
+
+
+export const Logo = styled.h1`
+  font-family: "Courier New";
+  font-size: 3rem;
+  color: #21EE66;
+  margin: 0;
+  line-height: 1;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  right: 8px;
+`;
+
+export const Divider = styled.hr`
+border: none;
+border-bottom: 1px solid #ccc;
+margin: 16px 0;
+`;
+
+export const Box = styled.div`
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  padding: 16px;
+`;

@@ -21,7 +21,7 @@ function NewItemForm({ items, setItems }) { //access to items and setItems as pr
             },
             body: JSON.stringify({
                 item: { //key of item with objects 
-                    store_id: 13,
+                    store_id: 20,
                     item_name: itemName,
                     description,
                     image_url: imageUrl,
