@@ -5,7 +5,8 @@ background: #4a5970;
 height: 4.5rem;
 display: flex;
 align-items: center; 
-justify-content: center; 
+justify-content: flex-start;
+margin-left: 10px
 
 a {
     text-decoration: none;

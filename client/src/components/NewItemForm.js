@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import { Input, Form, Textarea, Button } from "./styled";
-import {Error, FormField, Label} from "../styles.js";
+import { Input, Textarea, Button } from "./styled";
+import {Error, FormField, Label} from "../styles";
 import styled from 'styled-components';
 
 
-function NewItemForm({ items, setItems }) { //access to items and setItems as props
+function NewItemForm({user, items, setItems }) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
@@ -19,31 +19,31 @@ function NewItemForm({ items, setItems }) { //access to items and setItems as pr
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
+        const itemData = {
+          item_name: itemName,
+          description,
+          image_url: imageUrl,
+          price,
+          product
+      };
         async function createItem(){
            const res = await fetch("/items", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                item: {
-                    item_name: itemName,
-                    description,
-                    image_url: imageUrl,
-                    price,
-                    product
-                }
-            })
+            body: JSON.stringify(itemData)
             })
              //Check the response by testing the form and adding byebug to the create action controller
             if(res.ok){
-                const newItem = await res.json();
-                setItems([...items, newItem]) //or item.concat(newItem) add to the end of the items
+               // const newItem = await res.json();
+                //setItems([...items, newItem]) //or item.concat(newItem) add to the end of the items
+                setIsLoading(false);
                 history.push('/')
             } else {
-                const error = await res.json();
-                console.log(error)
-                setErrors(error.message)
+                const err = await res.json();
+                console.log(err)
+                setErrors(err.errors)
             };
        }
        createItem();

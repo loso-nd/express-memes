@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button, Error, FormField, Label, Textarea} from "../styles.js";
+import { Input, Button, Error, FormField, Label, Textarea} from "../styles";
 //import { useHistory } from 'react-router-dom'
 
 function SignupForm({ onLogin }) {

@@ -1,22 +1,39 @@
 import '../App.css';
 import React, {useState, useEffect} from 'react';
 import { Input, Textarea, Button } from "./styled";
-import {Error, FormField, Label} from "../styles.js";
+import {FormField, Label} from "../styles";
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
 
-function EditItemForm({ items, setItems, user}) { //access to items and setItems as props
+function EditItemForm({ users}) { //access to items and setItems as props
+  
     //State for controlled form
+    const [items, setItems] = useState([]); // store items here in
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
     const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
-    // const [errors, setErrors] = useState('')
-    // const [isLoading, setIsLoading] = useState(false);
+    //const [errors, setErrors] = useState('')
+    //const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
     const id = useParams().id //has an id key which is passed inside the route in our App.js
+
+
+    // GET items
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch('/items');
+      
+            if(res.ok){
+                const data = await res.json();
+                console.log(data)
+                setItems(data); //update state 
+            }
+            }
+            fetchData() // invoke the function
+        }, []);
 
     //We want to populate what already exit on page load so we add a GET fetch 
     useEffect(() => { 
@@ -54,6 +71,7 @@ function EditItemForm({ items, setItems, user}) { //access to items and setItems
         })
         //Check the response by testing the form and adding byebug to the create action controller
         const item = await res.json();
+        console.log(items)
         //replace that item we are editing with a new item
         setItems(items.map(i => {
             return i.id === parseInt(id) ? item : i
@@ -115,11 +133,12 @@ function EditItemForm({ items, setItems, user}) { //access to items and setItems
                 Submit
               </Button>
             </FormField>
-            <FormField>
-              {/* {errors.map((err) => (
-                <Error key={err}>{err}</Error>
-              ))} */}
-            </FormField>
+            {/* <FormField>
+                {/* {errors?errors.map(error => <div>{error}</div>):null} 
+                {errors.map((err) => (
+          <Error key={err}>{err}</Error>
+        ))}
+                </FormField> */}
           </form>
         </WrapperChild>
       </Wrapper>

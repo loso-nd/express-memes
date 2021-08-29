@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
-import { Card, Image } from './styled'
+import { Card, Image } from './components/styled'
 
 function OrderCard() {
     //useState to keep track of Orders

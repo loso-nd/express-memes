@@ -8,22 +8,24 @@ function ItemContainer({ user }) {
     useEffect(() => {
         async function fetchData() {
             const res = await fetch('/items');
-            const items = await res.json();
-            setItems(items); //update state 
+            if(res.ok){
+                const data = await res.json();
+                console.log(data)
+                setItems(data); //update state 
+            }
             }
             fetchData() // invoke the function
-        }, [])
-            console.log(items)
+        }, []);
+          
     return (
         <>
             <h1>Items</h1>
             <Grid>
                 {items.map((item) => (
                     <ItemCard 
-                    key={item.id}
-                    item={item}
-                    items={items}
-                    setItems={setItems}
+                    key={item.id} setItems={setItems} 
+                    items={items}  
+                    item={item} user={user}
                     />
                 ))}
             </Grid>
