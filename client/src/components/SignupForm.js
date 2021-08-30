@@ -22,7 +22,7 @@ function SignupForm({ onLogin }) {
                 email,
                 bio
             }
-            const res = await fetch(`/users`, {
+            const res = await fetch(`/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

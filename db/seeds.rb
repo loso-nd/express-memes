@@ -37,7 +37,9 @@ Item.create(item_name: "Break It Off", price: 3.00, description: "When the compu
 
 Item.create(item_name: "The Assist", price: 3.00, description: "When one of the coachs take the time to help me sort through a problem.", image_url: 'https://media.giphy.com/media/un1u5EN4iCGaY/giphy.gif')
 
-15.times do |i|
+Item.create(item_name: "Light Bulb", price: 3.00, description: "When I finally started to connect the dots on concepts that tripped me up for days", image_url: 'https://media.giphy.com/media/SWEtV8x7WQOk0/giphy.gif')
+
+6.times do |i|
     Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png')
 end 
 
