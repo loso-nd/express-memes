@@ -7,6 +7,7 @@ import ItemCard from '../components/ItemCard';
 
 function OrderCollection({user}) {
   const [items, setItems] = useState([]);
+  
   useEffect(() => {
     async function getOrders(){
       const res = await fetch(`/users/${user.id}`)
@@ -18,12 +19,16 @@ function OrderCollection({user}) {
     getOrders()
   }, []);
 
+  function filterItems(deletedItem){
+    setItems(items.filter((item) => item.id !== deletedItem.id)) // keeps all that are not equall to deletedItem.id
+  }
+
   return (
     <Wrapper>
       {items.length > 0 ? (
         items.map((item) => (
           <Box>
-          <ItemCard item={item} user={true}/>
+          <ItemCard item={item} user={true} ordered={true} filterItems={filterItems}/>
           </Box>
         ))
       ) : (

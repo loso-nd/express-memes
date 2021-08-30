@@ -23,21 +23,24 @@ end
 
 #itmes 
 puts 'Creating Items...'
-Item.create(item_name: "Render Failure", price: 3.00, description: "Me carefully reading my code line by line for syntax errors", image_url: 'https://media.giphy.com/media/XEZZliwJmGg6otzKK1/giphy.gif', product:"Sticker")
+Item.create(item_name: "Render Failure", price: 3.00, description: "Me carefully reading my code line by line for syntax errors", image_url: 'https://media.giphy.com/media/XEZZliwJmGg6otzKK1/giphy.gif')
 
-Item.create(item_name: "This is Ridiculous", price: 3.00, description: "When I know my code is correct but it decided to not render as expected", image_url: 'https://media.giphy.com/media/3o7aTLhoDUdLALkXBe/giphy.gif', product:"Pin")
+Item.create(item_name: "This is Ridiculous", price: 3.00, description: "When I know my code is correct but it decided to not render as expected", image_url: 'https://media.giphy.com/media/3o7aTLhoDUdLALkXBe/giphy.gif')
 
-Item.create(item_name: "Error Persists", price: 3.00, description: "When I thought I found the error, but the error continues to persist. Now I must have a conversation with the program", image_url: 'https://media.giphy.com/media/jTZERwCGUrOFbPSvPj/giphy.gif', product:"Shirt")
+Item.create(item_name: "Error Persists", price: 3.00, description: "When I thought I found the error, but the error continues to persist. Now I must have a conversation with the program", image_url: 'https://media.giphy.com/media/jTZERwCGUrOFbPSvPj/giphy.gif')
 
-Item.create(item_name: "Stuck for Hours", price: 3.00, description: "When I get stuck on bug for hours and found myself ready to scream.I take a deep breath.", image_url: 'https://media.giphy.com/media/HA13C6MiJhov0nB9db/giphy.gif', product:"Shirt")
+Item.create(item_name: "Stuck for Hours", price: 3.00, description: "When I get stuck on bug for hours and found myself ready to scream.I take a deep breath.", image_url: 'https://media.giphy.com/media/HA13C6MiJhov0nB9db/giphy.gif')
 
-Item.create(item_name: "The Finish Line", price: 3.00, description: "When I finally have something presentable", image_url: 'https://media.giphy.com/media/N1eSbsofSQE24/giphy.gif', product:"Sticker")
+Item.create(item_name: "The Finish Line", price: 3.00, description: "When I finally have something presentable", image_url: 'https://media.giphy.com/media/N1eSbsofSQE24/giphy.gif')
 
-Item.create(item_name: "Break It Off", price: 3.00, description: "When the computer and I have been staring at each other for too long.", image_url: 'https://media.giphy.com/media/8PaTfcX430cHtDmgKk/giphy.gif', product:"Pin")
+Item.create(item_name: "Break It Off", price: 3.00, description: "When the computer and I have been staring at each other for too long.", image_url: 'https://media.giphy.com/media/8PaTfcX430cHtDmgKk/giphy.gif')
+
+Item.create(item_name: "The Assist", price: 3.00, description: "When one of the coachs take the time to help me sort through a problem.", image_url: 'https://media.giphy.com/media/un1u5EN4iCGaY/giphy.gif')
 
 15.times do |i|
-    Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png', product:"Pin")
+    Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png')
 end 
+
 
 
 #orders

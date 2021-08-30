@@ -9,7 +9,7 @@ function NewLogin({ onLogin }) {
 
     return (
         <Wrapper>
-            <Logo>Express Memes</Logo>
+            <Logo>Regular Expressions</Logo>
             {showLogin ? (
                 <>
                 <LoginForm onLogin={onLogin} />

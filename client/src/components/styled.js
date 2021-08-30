@@ -30,6 +30,13 @@ export const Form = styled.form`
   height: 100vh;
 `;
 
+export const Select = styled.select`
+  padding: 1em;
+  margin: 1em 1em;
+  width: 14em;
+  border-radius: 0.375em;
+  `;
+
 export const Input = styled.input`
   padding: 1em;
   margin: 1em 0;

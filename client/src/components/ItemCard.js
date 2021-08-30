@@ -1,11 +1,33 @@
 import { Link, useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
-import { Card, Image, Button, Errors } from './styled'
+import { Card, Image, Button, Errors, Select } from './styled'
+import { FormField, Label} from "../styles";
 
-function ItemCard({ item, items, setItems, userOrders, user }) {
+function ItemCard({ item, items, setItems, userOrders, user, ordered, filterItems}) {
   let history = useHistory();
   const [errors, setErrors] = useState(null);
+  //const [selectedCategory, setSelectedCategory] = useState("All");
   //console.log(user)
+
+
+  //Deleted Ordered 
+  async function deleteOrdered(){
+    const deleteData ={
+      item_id: item.id
+    };
+    const res = await fetch(`/delete-order-item`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(deleteData)
+    });
+    if (res.ok) {
+      const deleted = await res.json();
+      filterItems(item)
+    }
+  }
+
   //Delete item
   async function deleteItem() {
     const res = await fetch(`/items/${item.id}`, {
@@ -19,7 +41,7 @@ function ItemCard({ item, items, setItems, userOrders, user }) {
   //Review POST
   async function orderItem() {
     const orderData = {
-      item_id: item.id
+      item_id: item.id,
     };
     const res = await fetch(`/orders`, {
       method: 'POST',
@@ -42,21 +64,42 @@ function ItemCard({ item, items, setItems, userOrders, user }) {
     <Card>
       <Image src={item.image_url} alt={item.item_name} />
       <h2>{item.item_name}</h2>
-      <h3>{item.product}: ${parseFloat(item.price).toFixed(2)}</h3>
+      {ordered ? 
+      <FormField>
+        <Label htmlFor="product">Product</Label>
+          <Select >
+              <option  value="shirt">Sticker</option>
+              <option value="Pin">Pin</option>
+              <option  selected value="shirt">Shirt</option>
+          </Select>
+          <strong style={{fontSize: "22px"}}>${parseFloat(item.price).toFixed(2)}</strong>
+          
+        </FormField>
+        : 
+        null}
+      {/* <h3> ${parseFloat(item.price).toFixed(2)}</h3> */}
       <p>{item.description}</p>
-      <Button green onClick={orderItem}>
-        Order
-      </Button>
-      {user.admin == 'true' ? 
-      <Button red onClick={deleteItem}>
-        Delete
-      </Button>
-      : null}
-      {user.admin == 'true' ? 
-      <Link to={`/items/${item.id}/edit`}>
-        <Button grey>Edit</Button>
-      </Link>
-      : null}
+      {user.admin == "true" ? 
+      <>
+        <Link to={`/items/${item.id}/edit`}>
+          <Button grey>Edit</Button>
+        </Link>
+
+        <Button red onClick={deleteItem}>
+          Delete
+        </Button>
+        </>
+     
+      : ( ordered ?
+        <Button red onClick={deleteOrdered}>
+          Delete
+        </Button>
+      :
+        <Button green onClick={orderItem}>
+          Order
+        </Button>
+        )
+      }
 
       <Errors>
         <p>{errors}</p>

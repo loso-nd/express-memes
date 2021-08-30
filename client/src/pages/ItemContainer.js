@@ -5,6 +5,9 @@ import { Grid } from '../components/styled';
 function ItemContainer({ user }) {
     const [items, setItems] = useState([]); // store items here in
 
+    function removeOrders(){
+        setItems(items)
+    }
     useEffect(() => {
         async function fetchData() {
             const res = await fetch('/items');
@@ -19,13 +22,15 @@ function ItemContainer({ user }) {
           
     return (
         <>
-            <h1>Items</h1>
+            <h1>Express Memes </h1>
             <Grid>
                 {items.map((item) => (
                     <ItemCard 
                     key={item.id} setItems={setItems} 
                     items={items}  
                     item={item} user={user}
+                    ordered={false}
+                    removeOrders ={removeOrders}
                     />
                 ))}
             </Grid>

@@ -1,6 +1,6 @@
 import '../App.css';
 import React, {useState, useEffect} from 'react';
-import { Input, Textarea, Button } from "./styled";
+import { Input, Textarea, Button, Select} from "./styled";
 import {FormField, Label} from "../styles";
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
@@ -12,7 +12,6 @@ function EditItemForm({ users}) { //access to items and setItems as props
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
-    const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
     //const [errors, setErrors] = useState('')
     //const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +44,6 @@ function EditItemForm({ users}) { //access to items and setItems as props
             setItemName(item.item_name)
             setImageUrl(item.image_url)
             setPrice(item.price)
-            setProduct(item.product)
             setDescription(item.description)
         }
         fetchItem()
@@ -59,8 +57,7 @@ function EditItemForm({ users}) { //access to items and setItems as props
             item_name: itemName,
             description,
             image_url: imageUrl,
-            price,
-            product
+            price
         };
         const res = await fetch(`/items/${id}`, { //id is coming from useParams
             method: 'PATCH',
@@ -110,14 +107,6 @@ function EditItemForm({ users}) { //access to items and setItems as props
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-            </FormField>
-            <FormField>
-              <Label htmlFor="product">Product</Label>
-                <select  onChange={(e) => setProduct(e.target.value)}>
-                    <option  onChange={(e) => setProduct(e.target.value)} value="button">Button</option>
-                    <option onChange={(e) => setProduct(e.target.value)} value="Pin">Pin</option>
-                    <option  onChange={(e) => setProduct(e.target.value)}selected value="shirt">Shirt</option>
-                </select>
             </FormField>
             <FormField>
               <Label htmlFor="description">Description</Label>

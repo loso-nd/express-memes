@@ -9,7 +9,6 @@ function NewItemForm({user, items, setItems }) { //access to items and setItems 
     const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
-    const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -23,8 +22,7 @@ function NewItemForm({user, items, setItems }) { //access to items and setItems 
           item_name: itemName,
           description,
           image_url: imageUrl,
-          price,
-          product
+          price
       };
         async function createItem(){
            const res = await fetch("/items", {
@@ -80,16 +78,6 @@ function NewItemForm({user, items, setItems }) { //access to items and setItems 
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-            </FormField>
-            <FormField>
-              <Label htmlFor="product">Product</Label>
-                <form className="products">
-                  <select onChange={(e) => setProduct(e.target.value)}>
-                    <option value="button">Button</option>
-                    <option value="Pin">Pin</option>
-                    <option selected value="shirt">Shirt</option>
-                  </select>
-                </form>
             </FormField>
             <FormField>
               <Label htmlFor="description">Description</Label>

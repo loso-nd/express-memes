@@ -28,14 +28,15 @@ function Navbar({ user, setUser })  {
                 <Button as={Link} to="/">
                     Home
                 </Button>
-                <Button as={Link} to="/orders">
-                    Orders
-                </Button>
+
                 {user.admin == "true" ? 
                  <Button as={Link} to="/new">
                     Regex Expressions
                 </Button>
-                : null }
+                :  
+                <Button as={Link} to="/orders">
+                    Orders
+                </Button> }
                 <Button variant= "outline" onClick={handleLogout}>
                     Logout
                 </Button>

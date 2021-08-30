@@ -6,7 +6,7 @@ const COLORS = {
     "--accent": "white",
   },
   secondary: {
-    "--main": "#327FE9",
+    "--main": "#000",
     "--accent": "white",
   },
 };
@@ -29,7 +29,7 @@ const ButtonBase = styled.button`
   border-radius: 6px;
   padding: 8px 16px;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0.;
 `;
 
 const FillButton = styled(ButtonBase)`
