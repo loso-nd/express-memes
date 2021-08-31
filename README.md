@@ -23,14 +23,11 @@ Front-en Requirements ( React )
 Things you may want to cover:
 
 
-Setup
+# Setup
 To download the dependencies for the frontend and backend, run:
 
 $ bundle install
 $ npm install --prefix client
-
-
-There is some starter code in the db/seeds.rb file so that once you've generated the models, you'll be able to test my application.
 
 
 You can run your Rails API on localhost:3001 by running:
@@ -47,14 +44,16 @@ $ npm start --prefix client
 
 ruby '2.7.4'
 
+
 * System dependencies
 
 * Configuration
 
 * Database creation
 
-# Use postgresql as the database for Active Record
+Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+
 
 * Database initialization
 
