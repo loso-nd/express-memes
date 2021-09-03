@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import { Input, Textarea, Button } from "./styled";
 import {Error, FormField, Label} from "../styles";
 import styled from 'styled-components';
+import  { useSelector, useDispatch } from 'react-redux' //connecting react app to the reduc store
 
 
 function NewItemForm({user, items, setItems }) { //access to items and setItems as props
-    const [itemName, setItemName] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
@@ -14,12 +14,15 @@ function NewItemForm({user, items, setItems }) { //access to items and setItems 
     const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
+    const titleName = useSelector((state) =>  state.itemName );
+    const dispatch = useDispatch();
+    console.log(titleName)
 
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
         const itemData = {
-          item_name: itemName,
+          item_name: titleName,
           description,
           image_url: imageUrl,
           price
@@ -57,8 +60,8 @@ function NewItemForm({user, items, setItems }) { //access to items and setItems 
               <Input
                 type="text"
                 id="itemName"
-                value={itemName}
-                onChange={(e) => setItemName(e.target.value)}
+                value={titleName}
+                onChange={(e) => dispatch({payload:e.target.value, type: "setItemName"})} //dispatch the action to reducer
               />
             </FormField>
             <FormField>

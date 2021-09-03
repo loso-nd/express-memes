@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import NewLogin from './components/NewLogin'; 
@@ -11,6 +11,18 @@ import NewItemForm from './components/NewItemForm';
 
 function App() {
   const [user, setUser] = useState(null)
+
+  
+
+  //To have user persist on refresh
+  useEffect(async () => {
+    const res = await fetch("/me")
+    if(res.ok){
+      const data = await res.json();
+      console.log(data)
+      setUser(data); //update state 
+  }
+  }, [])
 
   if(!user) return <NewLogin onLogin={setUser} />
 

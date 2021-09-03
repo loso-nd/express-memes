@@ -39,7 +39,7 @@ Item.create(item_name: "The Assist", price: 3.00, description: "When one of the 
 
 Item.create(item_name: "Light Bulb", price: 3.00, description: "When I finally started to connect the dots on concepts that tripped me up for days", image_url: 'https://media.giphy.com/media/SWEtV8x7WQOk0/giphy.gif')
 
-6.times do |i|
+2.times do |i|
     Item.create(item_name: "Not Impressed", price: 3.00, description: "Not Impressed", image_url: 'https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png')
 end 
 
