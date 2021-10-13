@@ -12,8 +12,6 @@ import NewItemForm from './components/NewItemForm';
 function App() {
   const [user, setUser] = useState(null)
 
-  
-
   //To have user persist on refresh
   useEffect(async () => {
     const res = await fetch("/me")

@@ -24,7 +24,8 @@ function LoginForm({ onLogin }) {
         onLogin(user)
       } else {
         const err = await res.json()
-        setErrors(err.errors)
+        console.log(err)
+        setErrors(console.log)
       }
       };
     login()

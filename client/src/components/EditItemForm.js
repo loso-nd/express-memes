@@ -1,6 +1,6 @@
 import '../App.css';
 import React, {useState, useEffect} from 'react';
-import { Input, Textarea, Button, Select} from "./styled";
+import { Input, Textarea, Button} from "./styled";
 import {FormField, Label} from "../styles";
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';

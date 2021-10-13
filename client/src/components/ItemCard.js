@@ -79,7 +79,7 @@ function ItemCard({ item, items, setItems, userOrders, user, ordered, filterItem
         null}
       {/* <h3> ${parseFloat(item.price).toFixed(2)}</h3> */}
       <p>{item.description}</p>
-      {user.admin == "true" ? 
+      {user.admin === "true" ? 
       <>
         <Link to={`/items/${item.id}/edit`}>
           <Button grey>Edit</Button>

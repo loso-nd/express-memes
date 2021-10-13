@@ -29,7 +29,7 @@ function Navbar({ user, setUser })  {
                     Home
                 </Button>
 
-                {user.admin == "true" ? 
+                {user.admin === "true" ? 
                  <Button as={Link} to="/new">
                     Regex Expressions
                 </Button>
